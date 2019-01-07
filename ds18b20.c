@@ -57,6 +57,8 @@ int ds18b20_read_data(char *dev_addr, float *ftemp) {
    }
    while((numRead = read(fd, buf, 256)) > 0) {
       strncpy(tmpData, strstr(buf, "t=") + 2, 5);
+      // issue #1
+      tmpData[5]=0;
       float tempC = strtof(tmpData, NULL);
       *ftemp = tempC / 1000;
       //printf("Device: %s  - ", dev);
